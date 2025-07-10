@@ -2,6 +2,15 @@
 name = "egui-circular-progress-bar"
 version = "0.1.0"
 edition = "2024"
+authors = ["Linus Leo Stöckli"]
+repository = "https://github.com/hacknus/egui-circular-progress-bar"
+description = "A circular progress bar widget for egui."
+readme = "README.md"
+keywords = ["egui", "progress-bar", "circular", "widget"]
+categories = ["gui"]
+documentation = "https://docs.rs/egui-circular-progress-bar"
+homepage = "https://github.com/hacknus/egui-circular-progress-bar"
+license = "GPL-3"
 
 [dependencies]
 egui = "0.31"
