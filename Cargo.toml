@@ -1,0 +1,13 @@
+[package]
+name = "egui-circular-progress-bar"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+egui = "0.31"
+
+[[example]]
+name = "demo"
+
+[dev-dependencies]
+eframe = "0.31"
