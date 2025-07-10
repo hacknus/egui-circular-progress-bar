@@ -1,15 +1,16 @@
 use egui::{
-    pos2, Color32, Rect, Response, Sense, Stroke, Ui, Vec2,
-    Widget, WidgetInfo, WidgetType,
+    pos2, Color32, Rect, Response, Sense, Stroke, Ui, Vec2, Widget, WidgetInfo, WidgetType,
 };
 use std::f32::consts::{FRAC_PI_2, TAU};
 
 /// A circular progress bar widget for egui
 pub struct CircularProgressBar {
+    /// Progress value from 0.0 to 1.0
     progress: f32,
+    /// Optional size (diameter) of the progress bar
     size: Option<f32>,
+    /// Optional text to display in the center of the progress bar
     text: Option<String>,
-    animate: bool,
 }
 
 impl CircularProgressBar {
@@ -19,7 +20,6 @@ impl CircularProgressBar {
             progress: progress.clamp(0.0, 1.0),
             size: None,
             text: None,
-            animate: false,
         }
     }
 
@@ -35,19 +35,12 @@ impl CircularProgressBar {
         self
     }
 
-    /// Enable animation for indeterminate progress
-    pub fn animate(mut self, animate: bool) -> Self {
-        self.animate = animate;
-        self
-    }
-
     /// Create an indeterminate progress bar (animated)
     pub fn indeterminate() -> Self {
         Self {
             progress: 0.0,
             size: None,
             text: None,
-            animate: true,
         }
     }
 }
@@ -94,33 +87,22 @@ impl CircularProgressBar {
         );
 
         // Progress calculation
-        let (start_angle, end_angle) = if self.animate {
-            let time = ui.input(|i| i.time) as f32;
-            let rotation = time * 2.0; // Speed of rotation
-            let arc_length = TAU * 0.25; // Quarter circle
-            let start = rotation % TAU - FRAC_PI_2;
-            (start, start + arc_length)
-        } else {
-            let start_angle = -FRAC_PI_2; // Start at top (12 o'clock)
-            let progress_angle = TAU * self.progress;
-            (start_angle, start_angle + progress_angle)
-        };
+
+        let start_angle = -FRAC_PI_2; // Start at top (12 o'clock)
+        let progress_angle = TAU * self.progress;
+        let end_angle = start_angle + progress_angle;
 
         // Progress arc
-        if self.progress > 0.0 || self.animate {
-            let progress_color = if self.animate {
-                ui.visuals().selection.bg_fill
-            } else {
-                // Interpolate between stroke color and selection color
-                let from = visuals.fg_stroke.color;
-                let to = ui.visuals().selection.bg_fill;
-                Color32::from_rgba_premultiplied(
-                    (from.r() as f32 + (to.r() as f32 - from.r() as f32) * self.progress) as u8,
-                    (from.g() as f32 + (to.g() as f32 - from.g() as f32) * self.progress) as u8,
-                    (from.b() as f32 + (to.b() as f32 - from.b() as f32) * self.progress) as u8,
-                    (from.a() as f32 + (to.a() as f32 - from.a() as f32) * self.progress) as u8,
-                )
-            };
+        if self.progress > 0.0 {
+            // Interpolate between stroke color and selection color
+            let from = visuals.fg_stroke.color;
+            let to = ui.visuals().selection.bg_fill;
+            let progress_color = Color32::from_rgba_premultiplied(
+                (from.r() as f32 + (to.r() as f32 - from.r() as f32) * self.progress) as u8,
+                (from.g() as f32 + (to.g() as f32 - from.g() as f32) * self.progress) as u8,
+                (from.b() as f32 + (to.b() as f32 - from.b() as f32) * self.progress) as u8,
+                (from.a() as f32 + (to.a() as f32 - from.a() as f32) * self.progress) as u8,
+            );
 
             // Draw arc using path
             let mut points = Vec::new();
@@ -128,7 +110,8 @@ impl CircularProgressBar {
             let num_segments = num_segments.max(4);
 
             for i in 0..=num_segments {
-                let angle = start_angle + (end_angle - start_angle) * (i as f32 / num_segments as f32);
+                let angle =
+                    start_angle + (end_angle - start_angle) * (i as f32 / num_segments as f32);
                 let x = center.x + radius * angle.cos();
                 let y = center.y + radius * angle.sin();
                 points.push(pos2(x, y));
@@ -155,9 +138,7 @@ impl CircularProgressBar {
         }
 
         // Request repaint for animation
-        if self.animate {
-            ui.ctx().request_repaint();
-        }
+        ui.ctx().request_repaint();
     }
 }
 

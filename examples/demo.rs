@@ -125,15 +125,17 @@ impl eframe::App for ExampleApp {
                 }
 
                 ui.horizontal(|ui| {
-                    ui.add(CircularProgressBar::new(DOWNLOAD_PROGRESS).size(80.0).text(
-                        if DOWNLOADING {
-                            format!("Downloading... {:.0}%", DOWNLOAD_PROGRESS * 100.0)
-                        } else if DOWNLOAD_PROGRESS >= 1.0 {
-                            "Complete!".to_string()
-                        } else {
-                            "Ready".to_string()
-                        },
-                    ));
+                    ui.add(
+                        CircularProgressBar::new(DOWNLOAD_PROGRESS)
+                            .size(160.0)
+                            .text(if DOWNLOADING {
+                                format!("Downloading... {:.0}%", DOWNLOAD_PROGRESS * 100.0)
+                            } else if DOWNLOAD_PROGRESS >= 1.0 {
+                                "Complete!".to_string()
+                            } else {
+                                "Ready".to_string()
+                            }),
+                    );
 
                     ui.vertical(|ui| {
                         ui.label(format!("Progress: {:.1}%", DOWNLOAD_PROGRESS * 100.0));
