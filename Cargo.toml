@@ -10,7 +10,8 @@ keywords = ["egui", "progress-bar", "circular", "widget"]
 categories = ["gui"]
 documentation = "https://docs.rs/egui-circular-progress-bar"
 homepage = "https://github.com/hacknus/egui-circular-progress-bar"
-license = "LICENSE"
+license = "GPL-3.0"
+license_file = "LICENSE"
 
 [dependencies]
 egui = "0.31"
