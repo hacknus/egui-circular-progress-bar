@@ -1,5 +1,9 @@
 # egui Circular Progress Bar
 
+[![crates.io](https://img.shields.io/crates/v/egui-circular-progress-bar.svg)](https://crates.io/crates/egui-circular-progress-bar)
+[![Docs](https://docs.rs/egui-circular-progress-bar/badge.svg)](https://docs.rs/egui-circular-progress-bar)
+[![Rust](https://github.com/hacknus/egui-circular-progress-bar/actions/workflows/rust.yml/badge.svg)](https://github.com/hacknus/egui-circular-progress-bar/actions/workflows/rust.yml)
+
 A customizable circular progress bar widget for [egui](https://github.com/emilk/egui), the immediate mode GUI library for Rust.
 
 ![Circular Progress Bar Demo](demo.gif)
