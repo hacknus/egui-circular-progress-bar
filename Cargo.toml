@@ -11,13 +11,12 @@ categories = ["gui"]
 documentation = "https://docs.rs/egui-circular-progress-bar"
 homepage = "https://github.com/hacknus/egui-circular-progress-bar"
 license = "GPL-3.0"
-license_file = "LICENSE"
 
 [dependencies]
-egui = "0.31"
+egui = "0.32"
 
 [[example]]
 name = "demo"
 
 [dev-dependencies]
-eframe = "0.31"
+eframe = "0.32"
