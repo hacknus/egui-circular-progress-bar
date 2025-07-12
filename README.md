@@ -14,7 +14,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-egui-circular-progress-bar = "0.1.0"
+egui-circular-progress-bar = "0.2.0"
 egui = "0.31"
 ```
 
