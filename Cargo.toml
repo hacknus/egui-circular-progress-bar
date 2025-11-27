@@ -1,6 +1,6 @@
 [package]
 name = "egui-circular-progress-bar"
-version = "0.2.0"
+version = "0.3.0"
 edition = "2024"
 authors = ["Linus Leo Stöckli"]
 repository = "https://github.com/hacknus/egui-circular-progress-bar"
@@ -13,10 +13,10 @@ homepage = "https://github.com/hacknus/egui-circular-progress-bar"
 license = "GPL-3.0"
 
 [dependencies]
-egui = "0.32"
+egui = "0.33"
 
 [[example]]
 name = "demo"
 
 [dev-dependencies]
-eframe = "0.32"
+eframe = "0.33"
