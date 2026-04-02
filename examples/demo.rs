@@ -20,12 +20,12 @@ struct ExampleApp {
 }
 
 impl eframe::App for ExampleApp {
-    fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
+    fn ui(&mut self, ui: &mut egui::Ui, _frame: &mut eframe::Frame) {
         // Auto-animate progress for demo
         self.progress = (self.progress + 0.01) % 1.0;
-        ctx.request_repaint();
+        ui.ctx().request_repaint();
 
-        egui::CentralPanel::default().show(ctx, |ui| {
+        egui::CentralPanel::default().show_inside(ui, |ui| {
             ui.heading("Circular Progress Bar Examples");
             ui.separator();
 
@@ -121,7 +121,7 @@ impl eframe::App for ExampleApp {
                         DOWNLOAD_PROGRESS = 1.0;
                         DOWNLOADING = false;
                     }
-                    ctx.request_repaint();
+                    ui.ctx().request_repaint();
                 }
 
                 ui.horizontal(|ui| {

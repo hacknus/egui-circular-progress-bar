@@ -2,6 +2,10 @@
 
 All notable changes to the `egui-circular-progress-bar` project will be documented in this file.
 
+### v0.4.0 - 2.4.2026
+
+- Update to egui 0.34
+
 ### v0.3.0 - 28.11.2025
 
 - Update to egui 0.33
