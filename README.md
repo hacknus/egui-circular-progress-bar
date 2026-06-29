@@ -18,8 +18,8 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-egui-circular-progress-bar = "0.4.0"
-egui = "0.34"
+egui-circular-progress-bar = "1.0.0"
+egui = "0.35"
 ```
 
 ## Quick Start

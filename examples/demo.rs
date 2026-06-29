@@ -25,7 +25,7 @@ impl eframe::App for ExampleApp {
         self.progress = (self.progress + 0.01) % 1.0;
         ui.ctx().request_repaint();
 
-        egui::CentralPanel::default().show_inside(ui, |ui| {
+        egui::CentralPanel::default().show(ui, |ui| {
             ui.heading("Circular Progress Bar Examples");
             ui.separator();
 
